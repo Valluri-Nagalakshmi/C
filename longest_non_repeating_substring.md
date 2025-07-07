@@ -24,11 +24,18 @@ int longestUniqueSubstrBrute(char *str) {
         for (int j = i; j < len; j++) {
             if (areDistinct(str, i, j)) {
                 int currentLength = j - i + 1;
-                if (currentLength > maxLength)
+              if (currentLength > maxLength) {
                     maxLength = currentLength;
+                    startIndex = i;
+                }
             }
         }
     }
+    printf("Brute Force: Substring = ");
+    for (int i = 0; i < maxLength; i++)
+        putchar(str[startIndex + i]);
+    printf("\nLength = %d\n", maxLength);
+
     return maxLength;
 }
 
@@ -58,9 +65,17 @@ int longestUniqueSubstrSliding(char *str) {
         }
         visited[(unsigned char)str[i]] = i;
         int currentLength = i - start + 1;
-        if (currentLength > maxLength)
+        if (currentLength > maxLength) {
             maxLength = currentLength;
+            startIndex = start;
+        }
     }
+
+    printf("Sliding Window: Substring = ");
+    for (int i = 0; i < maxLength; i++)
+        putchar(str[startIndex + i]);
+    printf("\nLength = %d\n", maxLength);
+
     return maxLength;
 }
 
@@ -134,10 +149,18 @@ int longestUniqueSubstrBitmask(char *str) {
 
             mask |= (1 << bit);
             currLen++;
-            if (currLen > maxLen)
+            if (currLen > maxLen) {
                 maxLen = currLen;
+                startIndex = i;
+            }
         }
     }
+
+    printf("Bitmasking: Substring = ");
+    for (int i = 0; i < maxLen; i++)
+        putchar(str[startIndex + i]);
+    printf("\nLength = %d\n", maxLen);
+
     return maxLen;
 }
 
@@ -175,9 +198,16 @@ int longestUniqueSubstrStructArray(char *str) {
         charMap[ch].lastIndex = i;
 
         int currLength = i - start + 1;
-        if (currLength > maxLength)
+      if (currLength > maxLength) {
             maxLength = currLength;
+            startIndex = start;
+        }
     }
+
+    printf("Struct Array: Substring = ");
+    for (int i = 0; i < maxLength; i++)
+        putchar(str[startIndex + i]);
+    printf("\nLength = %d\n", maxLength);
 
     return maxLength;
 }
