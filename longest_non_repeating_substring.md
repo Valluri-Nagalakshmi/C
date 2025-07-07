@@ -19,18 +19,20 @@ int areDistinct(char *str, int start, int end) {
 int longestUniqueSubstrBrute(char *str) {
     int maxLength = 0;
     int len = strlen(str);
+    int startIndex = 0;
 
     for (int i = 0; i < len; i++) {
         for (int j = i; j < len; j++) {
             if (areDistinct(str, i, j)) {
                 int currentLength = j - i + 1;
-              if (currentLength > maxLength) {
+                if (currentLength > maxLength) {
                     maxLength = currentLength;
                     startIndex = i;
                 }
             }
         }
     }
+
     printf("Brute Force: Substring = ");
     for (int i = 0; i < maxLength; i++)
         putchar(str[startIndex + i]);
@@ -41,9 +43,10 @@ int longestUniqueSubstrBrute(char *str) {
 
 int main() {
     char str[] = "abcabcbb";
-    printf("Brute Force: Length of longest substring = %d\n", longestUniqueSubstrBrute(str));
+    longestUniqueSubstrBrute(str);
     return 0;
 }
+
 ```
 
 ## 2. Sliding Window Method
@@ -58,6 +61,7 @@ int longestUniqueSubstrSliding(char *str) {
 
     int maxLength = 0, start = 0;
     int len = strlen(str);
+    int startIndex = 0;
 
     for (int i = 0; i < len; i++) {
         if (visited[(unsigned char)str[i]] >= start) {
@@ -81,7 +85,7 @@ int longestUniqueSubstrSliding(char *str) {
 
 int main() {
     char str[] = "abcabcbb";
-    printf("Sliding Window: Length of longest substring = %d\n", longestUniqueSubstrSliding(str));
+    longestUniqueSubstrSliding(str);
     return 0;
 }
 ```
@@ -112,10 +116,10 @@ void longest_unique_substring_pointer(char *str) {
         }
     }
 
-    printf("Longest Unique Substring (Pointer version): ");
+    printf("Pointer Method: Substring = ");
     for (int i = 0; i < max_len; i++)
         putchar(*(max_start + i));
-    printf("\nLength: %d\n", max_len);
+    printf("\nLength = %d\n", max_len);
 }
 
 int main() {
@@ -123,6 +127,7 @@ int main() {
     longest_unique_substring_pointer(str);
     return 0;
 }
+
 
 ```
 
@@ -135,6 +140,7 @@ int main() {
 int longestUniqueSubstrBitmask(char *str) {
     int maxLen = 0;
     int len = strlen(str);
+    int startIndex = 0;
 
     for (int i = 0; i < len; i++) {
         int mask = 0;
@@ -142,13 +148,12 @@ int longestUniqueSubstrBitmask(char *str) {
 
         for (int j = i; j < len; j++) {
             int bit = str[j] - 'a';
-            if (bit < 0 || bit > 25) break;  // Not a lowercase letter
-
-            if ((mask & (1 << bit)) > 0)
-                break;
+            if (bit < 0 || bit > 25) break;
+            if ((mask & (1 << bit)) > 0) break;
 
             mask |= (1 << bit);
             currLen++;
+
             if (currLen > maxLen) {
                 maxLen = currLen;
                 startIndex = i;
@@ -166,7 +171,7 @@ int longestUniqueSubstrBitmask(char *str) {
 
 int main() {
     char str[] = "abacdefgh";
-    printf("Bitmasking Method: Length of longest substring = %d\n", longestUniqueSubstrBitmask(str));
+    longestUniqueSubstrBitmask(str);
     return 0;
 }
 ```
@@ -186,19 +191,17 @@ int longestUniqueSubstrStructArray(char *str) {
     for (int i = 0; i < 256; i++)
         charMap[i].lastIndex = -1;
 
-    int start = 0, maxLength = 0;
+    int start = 0, maxLength = 0, startIndex = 0;
     int len = strlen(str);
 
     for (int i = 0; i < len; i++) {
         unsigned char ch = str[i];
-
         if (charMap[ch].lastIndex >= start)
             start = charMap[ch].lastIndex + 1;
 
         charMap[ch].lastIndex = i;
-
         int currLength = i - start + 1;
-      if (currLength > maxLength) {
+        if (currLength > maxLength) {
             maxLength = currLength;
             startIndex = start;
         }
@@ -214,8 +217,9 @@ int longestUniqueSubstrStructArray(char *str) {
 
 int main() {
     char str[] = "abcbdeafg";
-    printf("Structure Array Method: Length = %d\n", longestUniqueSubstrStructArray(str));
+    longestUniqueSubstrStructArray(str);
     return 0;
 }
+
 ```
 
