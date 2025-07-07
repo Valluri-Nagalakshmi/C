@@ -71,37 +71,44 @@ int main() {
 }
 ```
 
-## 3. Optimized Sliding Window (Hashing)
+## 3. # Pointer-Based Sliding Window Method 
 
 ```c
 #include <stdio.h>
-#include <string.h>
 
-int longestUniqueSubstrOptimized(char *str) {
-    int lastIndex[256];
-    for (int i = 0; i < 256; i++) lastIndex[i] = -1;
+void longest_unique_substring_pointer(char *str) {
+    int visited[256] = {0};
+    char *start = str, *end = str;
+    char *max_start = str;
+    int max_len = 0;
 
-    int maxLength = 0;
-    int start = 0;
-    int len = strlen(str);
-
-    for (int i = 0; i < len; i++) {
-        if (lastIndex[(unsigned char)str[i]] >= start) {
-            start = lastIndex[(unsigned char)str[i]] + 1;
+    while (*end) {
+        if (!visited[(unsigned char)*end]) {
+            visited[(unsigned char)*end] = 1;
+            int window_len = end - start + 1;
+            if (window_len > max_len) {
+                max_len = window_len;
+                max_start = start;
+            }
+            end++;
+        } else {
+            visited[(unsigned char)*start] = 0;
+            start++;
         }
-        lastIndex[(unsigned char)str[i]] = i;
-        int currentLength = i - start + 1;
-        if (currentLength > maxLength)
-            maxLength = currentLength;
     }
-    return maxLength;
+
+    printf("Longest Unique Substring (Pointer version): ");
+    for (int i = 0; i < max_len; i++)
+        putchar(*(max_start + i));
+    printf("\nLength: %d\n", max_len);
 }
 
 int main() {
-    char str[] = "pwwkew";
-    printf("Optimized Sliding Window: Length = %d\n", longestUniqueSubstrOptimized(str));
+    char str[] = "abcbdeac";
+    longest_unique_substring_pointer(str);
     return 0;
 }
+
 ```
 
 ## 4. Bit Masking
