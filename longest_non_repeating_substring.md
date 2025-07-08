@@ -90,7 +90,7 @@ int main() {
 }
 ```
 
-## 3. # Pointer-Based Sliding Window Method 
+## 3. Pointer-Based Sliding Window Method 
 
 ```c
 #include <stdio.h>
