@@ -41,13 +41,6 @@
 
 ---
 
-## 5. **Struct & Array**
-
-* Educational purpose → helps in understanding struct & array usage.
-* Adds slight overhead with **no real performance gain** over simpler array methods.
-* Not generally recommended for production.
-
----
 
 #  **Key Insights**
 
@@ -68,7 +61,7 @@
 | **Sliding Window (Index)**   | Default; fast, general-purpose, real-world apps.         |
 | **Sliding Window (Pointer)** | Low-level systems, embedded, constrained environments.   |
 | **Bit Masking**              | Only when characters are limited to 'a'–'z' (lowercase). |
-| **Struct Array**             | For educational learning, not for real apps.             |
+
 
 
 ---
