@@ -137,41 +137,36 @@ int main() {
 #include <stdio.h>
 #include <string.h>
 
-int longestUniqueSubstrBitmask(char *str) {
-    int maxLen = 0;
+void longest_bitmask(char *str) 
+{
+    int max_len = 0;
+    int start_index = 0;
     int len = strlen(str);
-    int startIndex = 0;
 
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < len; i++)
+    {
         int mask = 0;
-        int currLen = 0;
-
-        for (int j = i; j < len; j++) {
-            int bit = str[j] - 'a';
-            if (bit < 0 || bit > 25) break;
-            if ((mask & (1 << bit)) > 0) break;
-
-            mask |= (1 << bit);
-            currLen++;
-
-            if (currLen > maxLen) {
-                maxLen = currLen;
-                startIndex = i;
+        for (int j = i; j < len; j++) 
+        {
+            int ch = str[j] - 'a';
+            if (mask & (1 << ch)) break;
+            mask |= (1 << ch);
+            if ((j - i + 1) > max_len) 
+            {
+                max_len = j - i + 1;
+                start_index = i;
             }
         }
     }
 
-    printf("Bitmasking: Substring = ");
-    for (int i = 0; i < maxLen; i++)
-        putchar(str[startIndex + i]);
-    printf("\nLength = %d\n", maxLen);
-
-    return maxLen;
+    printf("Longest Unique Substring (Bitmask): ");
+    for (int i = 0; i < max_len; i++)
+        putchar(str[start_index + i]);
+    printf("\nLength: %d\n", max_len);
 }
-
 int main() {
-    char str[] = "abacdefgh";
-    longestUniqueSubstrBitmask(str);
+    char str[] = "abcbdeac";
+   longest_bitmask(str);
     return 0;
 }
 ```
