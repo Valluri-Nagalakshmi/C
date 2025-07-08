@@ -38,7 +38,7 @@ int longestUniqueSubstrBrute(char *str) {
         putchar(str[startIndex + i]);
     printf("\nLength = %d\n", maxLength);
 
-    return maxLength;
+    return 0;
 }
 
 int main() {
@@ -80,7 +80,7 @@ int longestUniqueSubstrSliding(char *str) {
         putchar(str[startIndex + i]);
     printf("\nLength = %d\n", maxLength);
 
-    return maxLength;
+    return 0;
 }
 
 int main() {
