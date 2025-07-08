@@ -42,7 +42,7 @@ int longestUniqueSubstrBrute(char *str) {
 }
 
 int main() {
-    char str[] = "abcabcbb";
+    char str[] = "abcdabcdefabc";
     longestUniqueSubstrBrute(str);
     return 0;
 }
@@ -84,7 +84,7 @@ int longestUniqueSubstrSliding(char *str) {
 }
 
 int main() {
-    char str[] = "abcabcbb";
+    char str[] = "abcdabcdefabc";
     longestUniqueSubstrSliding(str);
     return 0;
 }
@@ -123,7 +123,7 @@ void longest_unique_substring_pointer(char *str) {
 }
 
 int main() {
-    char str[] = "abcbdeac";
+    char str[] = "abcdabcdefabc";
     longest_unique_substring_pointer(str);
     return 0;
 }
@@ -165,7 +165,7 @@ void longest_bitmask(char *str)
     printf("\nLength: %d\n", max_len);
 }
 int main() {
-    char str[] = "abcbdeac";
+    char str[] = "abcdabcdefabc";
    longest_bitmask(str);
     return 0;
 }
@@ -211,7 +211,7 @@ int longestUniqueSubstrStructArray(char *str) {
 }
 
 int main() {
-    char str[] = "abcbdeafg";
+    char str[] = "abcdabcdefabc";
     longestUniqueSubstrStructArray(str);
     return 0;
 }
